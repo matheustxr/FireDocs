@@ -79,7 +79,7 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
    - Insira o e-mail e a senha do administrador para fazer login.
    - Após o login bem-sucedido, você será redirecionado para a página de upload de documentos.
 
-   ![Admin Login](https://via.placeholder.com/600x300?text=Admin+Login)
+   ![Admin Login](./src/assets/images/loginAdmin.jpg)
 
 2. **Upload de Documentos**
    - Insira o CPF do proprietário do documento.
@@ -87,7 +87,7 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
    - Escolha a data de validade do documento usando o seletor de datas.
    - Clique em "Carregar" para enviar o documento para o Firebase Storage e salvar os detalhes no Firestore.
 
-   ![Upload de Documentos](https://via.placeholder.com/600x300?text=Upload+de+Documentos)
+   ![Upload de Documentos](./src/assets/images/uploadDocumento.jpg)
 
 ### Página Pública (`/`)
 
@@ -95,7 +95,7 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
    - Insira um CPF no campo de busca para procurar os documentos associados a esse CPF.
    - Se documentos forem encontrados, eles serão listados com links para download.
 
-   ![Pesquisa de Documentos](https://via.placeholder.com/600x300?text=Pesquisa+de+Documentos)
+   ![Pesquisa de Documentos](./src/assets/images/procurarDocumento.jpg)
 
    - Clique em "Baixar" para abrir ou salvar o documento.
 
