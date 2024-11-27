@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Table, message, Form } from 'antd';
 import { collection, getDocs } from 'firebase/firestore';
+import Lottie from 'react-lottie-player';
 import InputMask from 'react-input-mask'; 
 
 import { db } from '../firebase';
+import certificado from '../assets/animations/animatimacao-certificado.json';
+import wpp from '../assets/images/whatsapp.png';
 
 interface Document {
   id: string;
@@ -79,6 +82,40 @@ const PublicPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <div className='mb-10 flex flex-col-reverse md:flex-row gap-5 md:gap-10 justify-around'>
+        <div className='w-full md:w-1/3 '>
+          <Lottie
+            play
+            loop
+            animationData={certificado}
+            className='w-full mx-auto '
+          />
+        </div>
+
+        <div className='w-full md:w-2/3 max-w-[700px] flex flex-col gap-3 justify-center'>
+          <h1 className='text-3xl font-semibold text-[#750101] title-certificados'>
+            Olá, seja bem-vindo à página de certificados
+          </h1>
+          <p>
+            Após concluir o curso, pedimos um prazo de 7 dias para a emissão do seu certificado. Informe seu CPF na barra de 
+            pesquisa e clique em "Buscar". Uma vez encontrado seu nome na lista de resultados, clique no link para visualizar e 
+            baixar seu certificado no formato PDF. Verifique todas as informações cuidadosamente antes de fazer o download.
+          </p>
+
+          <a 
+            href="https://api.whatsapp.com/send/?phone=553498937919&amp;text=Ol%C3%A1%2C+vim+atrav%C3%A9s+da+plataforma+e+gostaria+de+tirar+uma+d%C3%BAvida." 
+            target="_blank" 
+            className="py-2 px-5 w-[200px] flex items-center justify-between text-white font-semibold bg-[#29a71a] rounded animate-bounce"
+          >
+            WHATSAPP
+            <img 
+              src={wpp} 
+              alt="icone whatsapp" 
+              className="w-10"
+            />
+          </a>
+        </div>
+      </div>
 
       <h2>Pesquisar Documentos por CPF <span className='text-sm text-[#616161c4] '>(Digite apenas os números)</span></h2>
       
