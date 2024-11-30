@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Table, message, Form } from 'antd';
+import React, { FormEvent, useState } from 'react';
+import { Table, message} from 'antd';
 import { collection, getDocs } from 'firebase/firestore';
 import InputMask from 'react-input-mask'; 
 
@@ -13,12 +13,12 @@ interface Document {
 }
 
 const PublicPage: React.FC = () => {
-  const [cpf, setCpf] = useState('');
+  const [cpf, setCpf] = useState<string>('');
   const [documents, setDocuments] = useState<Document[]>([]);
 
-  const formatCpf = (cpf: string) => {
-    const cleanedCpf = cpf.replace(/\D/g, ''); 
-    return cleanedCpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    handleSearch();
   };
 
   const handleSearch = async () => {
@@ -28,8 +28,7 @@ const PublicPage: React.FC = () => {
     }
 
     try {
-      const formattedCpf = formatCpf(cpf);
-      const filesRef = collection(db, `documents/${formattedCpf}/files`);
+      const filesRef = collection(db, `documents/${cpf}/files`);
       const filesSnapshot = await getDocs(filesRef);
 
       if (!filesSnapshot.empty) {
@@ -47,13 +46,9 @@ const PublicPage: React.FC = () => {
       console.error('Erro ao buscar documentos:', error);
       message.error('Erro ao buscar documentos');
       setDocuments([]);
+    } finally {
+      setTimeout(message.success(`Foram encontrados ${documents.length} para esse CPF.`), 800);
     }
-  };
-
-  const handleFinish = (values: { cpf: string }) => {
-    setCpf(values.cpf); // Atualiza o CPF a partir do formulário
-    console.log(cpf);
-    handleSearch(); // Chama a função de busca
   };
 
   const columns = [
@@ -82,20 +77,22 @@ const PublicPage: React.FC = () => {
 
       <h2>Pesquisar Documentos por CPF <span className='text-sm text-[#616161c4] '>(Digite apenas os números)</span></h2>
       
-      <Form onFinish={handleFinish} className="mb-4">
-        <Form.Item name="cpf" rules={[{ required: true, message: 'Por favor, insira um CPF válido' }]}>
-          <InputMask
-            mask="999.999.999-99"
-            value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
-            className='w-full py-1 px-2 border border-gray-500 rounded-lg focus:border-blue-500 '
-            required
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">Pesquisar</Button>
-        </Form.Item>
-      </Form>
+      <form onSubmit={handleSubmit} className="mb-4">
+        <InputMask
+          mask="999.999.999-99"
+          value={cpf}
+          onChange={(e) => setCpf(e.target.value)}
+          className="mb-4 w-full py-2 px-2.5 border border-gray-500 rounded focus:outline-none focus:!border-blue-500"
+          required
+        />
+
+        <button 
+          type="submit" 
+          className='mt-3 px-3 py-1 text-base bg-[#1677ff] text-white transition-all rounded'
+        >
+          Pesquisar
+        </button>
+      </form>
       
       <Table 
         columns={columns} 

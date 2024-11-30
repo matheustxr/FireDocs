@@ -14,5 +14,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'indent': ['error', 2], // Definindo a indentação para 2 espaços
+    'semi': ['error', 'always'], // Exigir ponto e vírgula
   },
 }
