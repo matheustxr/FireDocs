@@ -34,7 +34,7 @@ const DocumentList: React.FC<DocumentListProps> = ({ documents }) => {
               {doc.url}
             </a>
           </p>
-          <p><strong>Data de Expiração:</strong> {doc.expirationDate}</p>
+          <p><strong>Expiration date:</strong> {doc.expirationDate}</p>
         </div>
       ))}
     </div>

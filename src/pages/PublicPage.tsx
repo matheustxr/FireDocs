@@ -23,7 +23,7 @@ const PublicPage: React.FC = () => {
 
   const handleSearch = async () => {
     if (!cpf) {
-      message.warning('Por favor, insira um CPF');
+      message.warning('Please enter a CPF');
       return;
     }
 
@@ -39,27 +39,27 @@ const PublicPage: React.FC = () => {
 
         setDocuments(docs);
       } else {
-        message.info('Nenhum documento encontrado para este CPF');
+        message.info('No documents found for this CPF');
         setDocuments([]);
       }
     } catch (error) {
-      console.error('Erro ao buscar documentos:', error);
-      message.error('Erro ao buscar documentos');
+      console.error('Error when searching for documents:', error);
+      message.error('Error when searching for documents');
       setDocuments([]);
     } finally {
-      setTimeout(message.success(`Foram encontrados ${documents.length} para esse CPF.`), 800);
+      setTimeout(message.success(`${documents.length} was found for this CPF.`), 800);
     }
   };
 
   const columns = [
     { 
-      title: 'Nome do Documento', 
+      title: 'Document Name', 
       dataIndex: 'name', 
       key: 'name', 
       render: (text: string) => <div className="break-words">{text}</div>
     },
     { 
-      title: 'Data de Validade', 
+      title: 'Expiration date', 
       dataIndex: 'expirationDate', 
       key: 'expirationDate', 
       render: (text: string) => <div className="break-words">{text}</div>
@@ -68,14 +68,14 @@ const PublicPage: React.FC = () => {
       title: 'Link', 
       dataIndex: 'url', 
       key: 'url', 
-      render: (text: string) => <a href={text} target="_blank" rel="noopener noreferrer">Baixar</a> 
+      render: (text: string) => <a href={text} target="_blank" rel="noopener noreferrer">Donwload</a> 
     },
   ];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-5 md:px-10 lg:px-14 xl:px-16">
 
-      <h2>Pesquisar Documentos por CPF <span className='text-sm text-[#616161c4] '>(Digite apenas os números)</span></h2>
+      <h2>Search Documents by CPF <span className='text-sm text-[#616161c4] '>(Enter numbers only)</span></h2>
       
       <form onSubmit={handleSubmit} className="mb-4">
         <InputMask
@@ -90,7 +90,7 @@ const PublicPage: React.FC = () => {
           type="submit" 
           className='mt-3 px-3 py-1 text-base bg-[#1677ff] text-white transition-all rounded'
         >
-          Pesquisar
+          Search
         </button>
       </form>
       

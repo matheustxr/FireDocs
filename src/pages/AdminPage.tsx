@@ -14,7 +14,7 @@ const AdminPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-5 md:px-10 lg:px-14 xl:16">
+    <div className="container mx-auto p-5 md:px-10 lg:px-14 xl:px-16">
       {!userLogged ? (
         <FormLoginAdmin />
       ) : (

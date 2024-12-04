@@ -17,19 +17,18 @@ export default function FormUploadFiles() {
   const isValidCpf = (cpf: string) => {
     const cleanCpf = cpf.replace(/\D/g, '');
     if (cleanCpf.length !== 11) return false;
-    // Adicione lógica de validação completa do CPF aqui
     return true;
   };
 
   const handleUpload = async (e: React.FormEvent) => {
-    e.preventDefault(); // Evita o recarregamento da página
+    e.preventDefault();
     if (!file || !cpf || !expirationDate) {
-      message.warning('Por favor, preencha todos os campos e selecione um arquivo');
+      message.warning('Please fill in all fields and select a file');
       return;
     }
 
     if (!isValidCpf(cpf)) {
-      message.warning('CPF inválido');
+      message.warning('Invalid CPF');
       return;
     }
 
@@ -48,13 +47,13 @@ export default function FormUploadFiles() {
         expirationDate: formattedDate,
       });
 
-      message.success('Arquivo carregado com sucesso');
+      message.success('File uploaded successfully');
       setCpf('');
       setFile(null);
       setExpirationDate(null);
     } catch (error) {
-      console.error('Erro ao carregar o arquivo:', error);
-      message.error('Erro ao carregar o arquivo');
+      console.error('Error loading file:', error);
+      message.error('Error loading file');
     } finally {
       setOnUpload(false);
     }
@@ -66,12 +65,12 @@ export default function FormUploadFiles() {
 
   return (
     <form onSubmit={handleUpload}>
-      <h2>Upload de Documentos</h2>
+      <h2>File Upload</h2>
 
       <InputMask
         required
         mask="999.999.999-99"
-        placeholder="CPF do proprietário"
+        placeholder="Owner's CPF"
         onChange={(e) => setCpf(e.target.value)}
         value={cpf}
         className="mb-4 w-full py-2 px-2.5 border border-gray-500 rounded focus:outline-none focus:!border-blue-500"
@@ -86,12 +85,12 @@ export default function FormUploadFiles() {
         fileList={file ? [{ uid: '-1', name: file.name, status: 'done' }] : []}
         accept=".pdf"
       >
-        <Button icon={<UploadOutlined />}>Selecionar Arquivo</Button>
+        <Button icon={<UploadOutlined />}>Select file</Button>
       </Upload>
 
       <DatePicker
         format="DD/MM/YYYY"
-        placeholder="Data de Validade"
+        placeholder="Validate date"
         value={expirationDate}
         onChange={(date) => setExpirationDate(date)}
         className="mt-4 mb-4"
@@ -104,7 +103,7 @@ export default function FormUploadFiles() {
         disabled={onUpload}
         className="ml-5 mt-4"
       >
-        {onUpload ? 'Carregando...' : 'Carregar'}
+        {onUpload ? 'Uploading...' : 'Upload'}
       </Button>
     </form>
   );

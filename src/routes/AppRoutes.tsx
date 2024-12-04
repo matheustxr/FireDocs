@@ -10,7 +10,7 @@ const AppRoutes: React.FC = () => {
       <MenuNavigation />
       <Routes>
         <Route path="/" element={<PublicPage />} />
-        <Route path="/admin-certificate" element={<AdminPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </Router>
   );

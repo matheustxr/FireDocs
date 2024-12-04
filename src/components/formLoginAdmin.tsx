@@ -13,13 +13,13 @@ export default function FormLoginAdmin() {
 
       sessionStorage.setItem("userLogged", "true");
 
-      message.success('Login realizado com sucesso');
+      message.success('Login successfully');
 
       window.location.reload();
     } catch (error) {
-      console.error('Erro no login:', error);
+      console.error('Login error:', error);
 
-      message.error('Erro no login, verifique suas credenciais');
+      message.error('Login error, check your credentials');
     }
   };
 
@@ -30,7 +30,7 @@ export default function FormLoginAdmin() {
 	
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Login administrador</h2>
+      <h2>Login administrator</h2>
 
       <Input 
         placeholder="Email" 
@@ -41,7 +41,7 @@ export default function FormLoginAdmin() {
       />
 
       <Input.Password 
-        placeholder="Senha" 
+        placeholder="Password" 
         value={password} 
         onChange={(e) => setPassword(e.target.value)}
         className="mb-4" 

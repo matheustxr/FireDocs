@@ -6,25 +6,11 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
 
 - **React** com **TypeScript**
 - **Ant Design** para componentes UI
+- **Tailwind CSS** para componentes UI
+- **Moment** para manipulação de datas
+- **IMaks** para formatação de inputs
 - **Firebase** (Autenticação, Firestore, Storage)
 - **Vite** para bundling e desenvolvimento
-- **Moment.js** para manipulação de datas
-
-## 📂 Estrutura do Projeto
-    src/
-    │
-    ├── components/
-    │ ├── AdminPage.tsx # Página de upload e gestão de documentos para administradores
-    │ └── PublicPage.tsx # Página pública para busca e download de documentos por CPF
-    │
-    ├── firebase.ts # Configuração e inicialização dos serviços Firebase
-    ├── App.tsx # Componente principal que define as rotas da aplicação
-    └── index.tsx # Ponto de entrada do aplicativo React
-    
-    public/ # Arquivos públicos estáticos
-    
-    .env # Variáveis de ambiente para configuração do Firebase
-
 
 ## 🧰 Instalação e Configuração
 
@@ -61,7 +47,6 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
     VITE_REACT_APP_FIREBASE_STORAGE_BUCKET=seu-storage-bucket
     VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID=seu-messaging-sender-id
     VITE_REACT_APP_FIREBASE_APP_ID=seu-app-id
-    VITE_REACT_APP_FIREBASE_MEASUREMENT_ID=seu-measurement-id
 
 
 3. **Execute a Aplicação**
@@ -76,10 +61,10 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
 ### Página de Administração (`/admin`)
 
 1. **Login de Administrador**
-   - Insira o e-mail e a senha do administrador para fazer login.
+   - Insira o e-mail e a senha do administrador para fazer login. (email: teste@email.com | password: 123456)
    - Após o login bem-sucedido, você será redirecionado para a página de upload de documentos.
 
-   ![Admin Login](./src/assets/images/loginAdmin.jpg)
+   ![Admin Login](./src/assets/images/loginAdmin.png)
 
 2. **Upload de Documentos**
    - Insira o CPF do proprietário do documento.
@@ -87,7 +72,7 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
    - Escolha a data de validade do documento usando o seletor de datas.
    - Clique em "Carregar" para enviar o documento para o Firebase Storage e salvar os detalhes no Firestore.
 
-   ![Upload de Documentos](./src/assets/images/uploadDocumento.jpg)
+   ![Upload de Documentos](./src/assets/images/uploadFile.png)
 
 ### Página Pública (`/`)
 
@@ -95,7 +80,7 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
    - Insira um CPF no campo de busca para procurar os documentos associados a esse CPF.
    - Se documentos forem encontrados, eles serão listados com links para download.
 
-   ![Pesquisa de Documentos](./src/assets/images/procurarDocumento.jpg)
+   ![Pesquisa de Documentos](./src/assets/images/searchFile.png)
 
    - Clique em "Baixar" para abrir ou salvar o documento.
 
