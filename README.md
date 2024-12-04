@@ -24,8 +24,8 @@ Este projeto é uma aplicação web que permite a administradores fazerem upload
 1. **Clone o Repositório**
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+   git clone https://github.com/matheustxr/FireDocs
+   cd FireDocs
    
 2. **Instale as Dependências**
 
